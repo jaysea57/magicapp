@@ -55,7 +55,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/home');
     });
 
-app.controller('Main', function($scope, $ionicSideMenuDelegate, $rootScope, $state, mainService, myConfig) {
+app.controller('Main', function($scope, $ionicSideMenuDelegate, $rootScope, $state, mainService, myConfig, $sce) {
 	console.log('Main controller');
 	console.log("myConfig url " + myConfig.url);
 	$scope.teamChosen = false;
@@ -63,6 +63,9 @@ app.controller('Main', function($scope, $ionicSideMenuDelegate, $rootScope, $sta
     	console.log('toggleSideMenu');
         $ionicSideMenuDelegate.toggleLeft();
       };
+    $scope.renderHtml = function (htmlCode) {
+            return $sce.trustAsHtml(htmlCode);
+    };
     $scope.isLoggedIn = function() {
       	if (typeof $rootScope.userData == "undefined" || typeof $rootScope.userData.data == "undefined") {
       		return false;

@@ -17,8 +17,12 @@ angular.module('magic').controller('HomeController', function($scope, $http, $st
     console.log('team ' + $scope.team.dsSquadra);
 });
 
-angular.module('magic').controller('HomeGPController', function($scope, $http, $state, $rootScope, mainService) {
+angular.module('magic').controller('HomeGPController', function($scope, $http, $state, $rootScope, mainService, $ionicScrollDelegate,$sce) {
 	console.log('HomeGPController controller');
+    $scope.resize = function() {
+        console.log('resize');
+        $ionicScrollDelegate.resize();
+    } 
 });	
 
 
