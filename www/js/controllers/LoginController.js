@@ -14,6 +14,7 @@ angular.module('magic').controller('LoginController', function($scope, $http, $s
 			.then(function (response) {
 				console.log('success return from getTeams service .. response type: ' + typeof response + " status " + response.status);
 				$scope.userTeams = response;
+				$rootScope.pageTitle = "Magic Leghe - " + $rootScope.userData.data.nome + " " + $rootScope.userData.data.cognome;
 				$state.go('home');
 			 }
 			 , function (response) {

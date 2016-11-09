@@ -58,6 +58,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 app.controller('Main', function($scope, $ionicSideMenuDelegate, $rootScope, $state, mainService, myConfig, $sce, $filter) {
 	console.log('Main controller');
 	console.log("myConfig url " + myConfig.url);
+    $rootScope.pageTitle = "Magic Leghe";  // prima versione header
 	$scope.teamChosen = false;
     $scope.toggleSideMenu = function() {
     	console.log('toggleSideMenu');
@@ -89,12 +90,22 @@ app.controller('Main', function($scope, $ionicSideMenuDelegate, $rootScope, $sta
     	console.log('isTeamChosen()');
     	return $scope.teamChosen;
     };
+    $scope.isChosen = function(tm) {
+        if ($scope.teamChosen) {
+            if ($scope.team.idSquadra == tm.idSquadra) {
+                console.log('chosen team: ' + tm.dsSquadra);
+                return true;
+            }
+        }
+    	return false;
+    };
     $scope.setTeamChosen = function(bool) {
     	$scope.teamChosen = bool;
     }
     $scope.logout = function() {
           console.log('logout function username: ' + $rootScope.userData.data.cognome);
           $rootScope.userData = {};
+          $rootScope.pageTitle = "Magic Leghe"; 
           $state.go('login');
           $scope.toggleSideMenu();
           $scope.setTeamChosen(false);
@@ -110,6 +121,7 @@ app.controller('Main', function($scope, $ionicSideMenuDelegate, $rootScope, $sta
           mainService.getTeamInfo($scope.team)
           .then(function (response) {
          	 $scope.teamInfo = response;
+             $rootScope.pageTitle = "Magic Leghe - " + team.dsSquadra; 
          	 if ($scope.teamInfo.data.lega.model.cd_modalita_gioco == "GP") {
          		 $state.go('home.gp');
          	 }

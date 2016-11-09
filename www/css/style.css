@@ -1,1 +1,8 @@
 /* Empty. Add your own CSS if you like */
+.no-padding {
+    padding: 0px !important;
+}
+.no-margin-vert {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}

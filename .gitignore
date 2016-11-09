@@ -1,0 +1,14 @@
+.bowerrc
+.editorconfig
+.vscode/
+bower.json
+config.xml
+gulpfile.js
+hooks/
+ionic.config.json
+jsconfig.json
+node_modules/
+package.json
+plugins/
+scss/
+www/.vscode/
