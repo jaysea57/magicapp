@@ -12,3 +12,6 @@ package.json
 plugins/
 scss/
 www/.vscode/
+platforms/
+resources/
+res/

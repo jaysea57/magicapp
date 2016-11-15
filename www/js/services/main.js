@@ -42,7 +42,7 @@ angular.module('magic').factory('mainService', function($http, myConfig) {
 	    	console.log('in getTeamInfo service');
 	    	return $http.get(myConfig.contextPath + "/priv/lg/squadra/home?is=" + team.idSquadra + "&ic=" + team.lega.idCampionato + "&j=1")
 			.then(function(response) {
-	      	    console.log('ok info ' + JSON.stringify(response, null, 1) );
+	      	    console.log('ok info ' + JSON.stringify(response, null, 1).substring(1,30) );
 	      	    teamInfo = response;
 	    	    return response;
 	         }

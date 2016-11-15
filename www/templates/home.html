@@ -1,17 +1,5 @@
 <ion-view title="Home Squadra">
-   <ion-content scroll="false">
-    <div ng-hide="teamChosen">
-      Scegli la tua squadra dal menu a sx
+    <div class="bar bar-subheader">
+      <h3>Scegli la tua squadra dal menu a sx</h3>
     </div>
-    <div ng-show="teamChosen">
-      <div class="card">
-      {{team.lega.dsCampionato}}
-      </div>      
-      <div class="card">
-      Questa è la home della squadra {{team.dsSquadra}}</br>
-      Allenatore: {{userData.data.nome}} {{userData.data.cognome}}
-      </div>
-     </div>      
-   	<ion-nav-view></ion-nav-view>
-   </ion-content>
 </ion-view>
