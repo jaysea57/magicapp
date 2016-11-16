@@ -1,20 +1,30 @@
 <ion-view title="Home Squadra GP">
   <ion-content scroll="true" delegate-handle="scrollComuff"  >
-       <div>
-        {{team.lega.dsCampionato}}
-        </div>      
+       <div ng-include="'templates/lega_header.html'">
+       </div>
         <div>
+        Has maglietta: {{team.hasMaglietta}} {{myConfig.contextPath}}</br>
+        <div ng-if="team.hasMaglietta">
+            <img src="{{myConfig.contextPath}}/pub/gp/magic3/get_maglietta?is={{team.idSquadra}}" width="121" height="165">
+        </div>
         Questa è la home della squadra {{team.dsSquadra}}</br>
-        Allenatore: {{userData.data.nome}} {{userData.data.cognome}}
+        Allenatore: {{userData.data.nome}} {{userData.data.cognome}}<br/>
+        Stadio: {{teamInfo.data.squadra.model.ds_stadio}}
         </div>
         <div>
-            Ultimo risultato (tot punti): {{teamInfo.data.ultimoRisultato.tot_punti}} 
-            Posizione in classifica: {{teamInfo.data.posClass}}
+            Posizione in classifica: {{teamInfo.data.posClass}}<br/>
+            Ultimo risultato: {{teamInfo.data.ultimoRisultato.tot_punti}}<br/>
         </div>
         <div>
-            <button class="button button-block" ng-click="openPopover($event)">
+            <button ng-if="teamInfo.data.news.length > 0" class="button button-block" ng-click="openPopover($event)">
                 Comunicazioni ufficiali: {{teamInfo.data.news.length}}
             </button>
+            <div ng-if="teamInfo.data.news.length == 0">
+                Non ci sono comunicazioni ufficiali
+            </div>
         </div>
   </ion-content>
+  <ion-footer-bar class="bar-positive">
+      <div ng-include="'templates/footer.html'">
+  </ion-footer-bar>
 </ion-view>

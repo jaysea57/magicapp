@@ -13,6 +13,9 @@ angular.module('magic').controller('HomeController', function($scope, $http, $st
 		console.log('not team chosen');
 		return;
 	}
+	$scope.$on('$ionicView.afterEnter', function(){
+  		console.log('ionic view home gp ...');
+	});
 	// .fromTemplateUrl() method
   	$ionicPopover.fromTemplateUrl('templates/comuf.html', {
     	scope: $scope

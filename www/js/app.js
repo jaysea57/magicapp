@@ -56,6 +56,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
                 ,templateUrl: 'templates/homegp.html'
                 ,controller: 'HomeController'
             })
+            .state('risultati_gp', {
+                url: '/risultati_gp'
+                ,templateUrl: 'templates/risultatigp.html'
+                ,controller: 'RisultatiController'
+            })
             .state('home_gp.comuf', {
                 url: '/home_gp.comuf'
                 ,templateUrl: 'templates/comuf.html'
@@ -72,6 +77,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 app.controller('Main', function($scope, $ionicSideMenuDelegate, $rootScope, $state, mainService, myConfig, $sce, $filter) {
 	console.log('Main controller');
 	console.log("myConfig url " + myConfig.url);
+    $rootScope.myConfig = myConfig;
     $rootScope.pageTitle = "Magic Leghe";  // prima versione header
 	$scope.teamChosen = false;
     $scope.toggleSideMenu = function() {

@@ -6,6 +6,16 @@ angular.module('magic').factory('mainService', function($http, myConfig) {
 	var currentTeam = null;
 	var loginData = null;
 	var currentTeamInfo = null;
+	var defaultGet = function(url, params, okFunction, errorFunction) {
+            //params.SID = $rootScope.SID;
+			console.log("defaultGet url: " + url);
+            return $http.get(url, { params: params }).then(function(data){
+                okFunction(data.data);
+            }, function(data){
+                errorFunction(data.data);
+            });
+        };
+
 	return {
 		setCurrentTeam: function(team){
 			console.log('service setCurrentTeam: ' + team.dsSquadra);
@@ -67,6 +77,17 @@ angular.module('magic').factory('mainService', function($http, myConfig) {
 		}
 		, getLoginData: function(){
 			return loginData;
+		}
+	    , getTabellino: function(teamInfoData,  okFunction, errorFunction) {
+	    	console.log('in getTabellino service');
+	    	return defaultGet(myConfig.contextPath + "/priv/lg/squadra/tabellino"
+			 , {
+				  is:  teamInfoData.squadra.model.id_squadra
+				 ,ic:  teamInfoData.lega.model.id_campionato
+				 ,j: 1
+				 ,ngg: teamInfoData.ultimoRisultato.n_giornata
+			 }
+			 , okFunction, errorFunction)
 		}
 	}; // return statement for service object
 });
